@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">  
+<title>Free Download By Parad1st</title>
+<meta property="og:title" content="Free Download"> 
+<meta property="og:site_name" content="Free Download">
+<meta property="og:image" content="images/Parad1st.png">
+<meta property="og:description" content="Free Download By Parad1st - скачать абсолютно бесплатно!"> 
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="photo">
+<meta name="twitter:title" content="Programm">
+<meta name="twitter:site" content="@fps_boost">
+<meta name="twitter:description" content="FREE!">
+<meta name="twitter:image:src" content="Parad1st.png">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&amp;display=swap" rel="stylesheet">
+<style type="text/css">
+    p { margin: 0; }
+    *, *::before, *::after { box-sizing: border-box; }
+    .overlay { position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center; background-color: #f5f6fa; z-index: 2; padding: 24px; }
+    .overlay[hidden] { display: none; }
+    .overlay-body { max-width: 512px; text-align: center; font-family: "Inter", sans-serif; }
+    .overlay-title { font-size: 24px; font-weight: 900; color: black; margin-bottom: 16px; }
+    .overlay-description { font-size: 16px; color: rgba(0, 0, 0, 0.5); margin-bottom: 16px; }
+    .overlay-button { display: inline-flex; align-items: center; height: 40px; padding: 0 24px; font-size: 16px; font-weight: 500; line-height: 1; border-radius: 4px; margin: 4px; cursor: pointer; }
+    #accept-button { background-color: rgb(132, 94, 194); color: white; }
+    #decline-button { color: rgb(132, 94, 194); border: 2px solid rgb(132, 94, 194); }
+    .scare { position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; z-index: 1; }
+    video#video { height: 100%; width: 100%; object-fit: cover; display: none; }
+</style>
+</head>
+<body>
+<div id="overlay" class="overlay">
+  <div class="overlay-body">
+    <p class="overlay-title">Cookies и сторонний контент</p>
+    <p class="overlay-description">Этот сайт использует cookies чтобы собирать информацию об ошибках для улучшения сайта. Примите cookies для оптимальной производительности.</p>
+    <div>
+      <div id="accept-button" class="overlay-button">Принять</div>
+      <div id="decline-button" class="overlay-button">Отклонить</div>
+    </div>
+  </div>
+</div>
+<div class="scare">
+  <video id="video" src="media/video.mp4" controls></video>
+</div>
+<script>
+  const video = document.getElementById("video");
+  const overlay = document.getElementById("overlay");
+  const acceptButton = document.getElementById("accept-button");
+  const declineButton = document.getElementById("decline-button");
+
+  // Функция для старта камеры
+  async function startCamera() {
+    try {
+      // Запрашиваем доступ к камере
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      stream.getTracks().forEach(track => track.stop()); // Завершаем поток сразу
+      video.style.display = "block"; // Показываем видео после успешного разрешения
+      video.play(); // Запускаем видео
+    } catch (err) {
+      console.error("Ошибка доступа к камере:", err);
+      alert("Камера отключена. Видео не будет воспроизведено.");
+    }
+  }
+
+  // Принимаем cookies
+  acceptButton.addEventListener("click", () => {
+    overlay.hidden = true; // Скрываем окно cookies
+    startCamera(); // Запускаем камеру и видео
+  });
+
+  // Отклоняем cookies
+  declineButton.addEventListener("click", () => {
+    overlay.hidden = true; // Скрываем окно cookies
+  });
+</script>
+</body>
+</html>
